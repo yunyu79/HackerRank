@@ -1,6 +1,7 @@
-SELECT CONCAT(MAX(months*salary),' ', COUNT(name))
+SELECT months*salary, COUNT(*)
 FROM Employee
 WHERE months*salary IN (
     SELECT MAX(months*salary)
     FROM Employee
-);
+)
+GROUP BY months*salary;
