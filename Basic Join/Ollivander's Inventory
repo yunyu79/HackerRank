@@ -1,5 +1,7 @@
 /* Question: choose is by determining the minimum number of gold galleons needed to buy each non-evil wand of high power and age. */
-/* To get the min/ max value, we need to use sub-query and MIN() or MAX() to get the min/ max value. It is like copying a same document, querying the same condition in the copied one and find the min/ max. Then return results. */ 
+/* To get the min/ max value, we need to use sub-query and MIN() or MAX() to get the min/ max value. It is like copying a same document, 
+querying the same condition in the copied one and find the min/ max. Then return results. */ 
+
 SELECT id, age, coins_needed, power
 FROM Wands w JOIN Wands_Property
 ON w.code = Wands_Property.code
