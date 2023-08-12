@@ -1,0 +1,4 @@
+SELECT IF(Grade >= 8, NAME, 'NULL'), Grade, Marks
+FROM Students JOIN Grades
+ON Marks <= Max_Mark AND Marks >= Min_Mark
+ORDER BY Grade DESC, NAME ASC;
