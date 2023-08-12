@@ -1,0 +1,4 @@
+# Query the Manhattan Distance between points and round it to a scale of decimal places.
+
+SELECT ROUND(MAX(LAT_N)-MIN(LAT_N)+MAX(LONG_W)-MIN(LONG_W),4)
+FROM STATION;
