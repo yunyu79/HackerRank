@@ -1,0 +1,25 @@
+/* Write a query to print the hacker_id, name, and the total number of challenges created by each student. Sort your results by the total number of challenges in 
+descending order. If more than one student created the same number of challenges, then sort the result by hacker_id. If more than one student created the same number of 
+challenges and the count is less than the maximum number of challenges created, then exclude those students from the result. */
+/* The difficulty in this question is that the last sentense. We need to get the max number of challenge AND the same total number of challenges solved by more than 
+one student. Thus, we need to write two sub-quiry to return the results and put them into conditional clauses in the outer query, like HAVING/ WHERE. */
+
+SELECT Hackers.hacker_id, name, COUNT(challenge_id) AS num_challenge
+FROM Challenges JOIN Hackers
+ON Challenges.hacker_id = Hackers.hacker_id
+GROUP BY Hackers.hacker_id, name
+HAVING num_challenge = 
+     (SELECT COUNT(challenge_id) AS Max_Num_Chall
+      FROM Challenges
+      GROUP BY hacker_id
+      ORDER BY Max_Num_Chall DESC
+      LIMIT 1)
+OR num_challenge NOT IN 
+       (SELECT DISTINCT num_challenge_temp
+        FROM 
+          (SELECT COUNT(challenge_id) AS num_challenge_temp
+          FROM Challenges
+          GROUP BY hacker_id) AS C2
+        GROUP BY num_challenge_temp
+        HAVING COUNT(num_challenge_temp) > 1)
+ORDER BY num_challenge DESC, hacker_id;
