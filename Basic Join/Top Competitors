@@ -1,3 +1,6 @@
+/* Write a query to print the respective hacker_id and name of hackers who achieved full scores for more than one challenge.  */
+/* There are four tables and more than one columns, between two tables, can be outer keys, SO we need to think about which column we can use to link. */
+
 SELECT h.hacker_id, name
 FROM Submissions s INNER JOIN Challenges c
 ON s.challenge_id = c.challenge_id
